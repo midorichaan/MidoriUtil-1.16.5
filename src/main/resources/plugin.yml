@@ -1,0 +1,51 @@
+name: MidoriUtil
+version: 1.0
+main: midorichan.Main
+api-version: 1.16
+description: Midori MinecraftPlugin for 1.16
+author: Midorichan
+website: https://twitter.com/Midorichaan2525
+
+permissions:
+  midoriutil.*:
+    default: op
+    description: all permissions for this plugin
+    children:
+      midoriutil.commands.*: true
+      midoriutil.admins: true
+  midoriutil.commands.*:
+    default: op
+    description: all permissions for commands
+    children:
+      midoriutil.commands.reloadconfig: true
+      midoriutil.commands.hat: true
+      midoriutil.commands.whois: true
+      midoriutil.commands.fly: true
+      midoriutil.commands.fly.other: true
+  midoriutil.admins:
+    default: op
+    description: all permissions for admin utils
+    children:
+      midoriutil.admins.cmdlog: true
+  midoriutil.admins.cmdlog:
+    default: op
+  midoriutil.commands.reloadconfig:
+    default: op
+  midoriutil.commands.whois:
+    default: op
+  midoriutil.commands.hat:
+    default: op
+  midoriutil.commands.fly:
+    default: op
+  midoriutil.commands.fly.other:
+    default: op
+
+commands:
+  whois:
+    description: Player whois information
+  reloadconfig:
+    description: Reload config
+  hat:
+    description: Item Hat
+  fly:
+    description: Creative Fly

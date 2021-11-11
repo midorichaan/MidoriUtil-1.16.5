@@ -1,0 +1,16 @@
+#チャットのPrefix
+chat-prefix: " §2>§a>§r "
+
+#ログインメッセージ
+login-message: false
+login-message-content: ""
+#ログアウトメッセージ
+logout-message: false
+logout-message-content: ""
+
+#コマンドブロックのログ
+admin-cmdblock-commandlog: true
+#プレイヤーのコマンドログ
+admin-player-commandlog: true
+#コンソールのコマンドログ
+admin-console-commandlog: true
