@@ -2,10 +2,13 @@
 chat-prefix: " §2>§a>§r "
 
 #ログインメッセージ
-login-message: false
+login-message: true
 login-message-content: ""
+login-title: true
+login-title-content: ""
+login-subtitle-content: ""
 #ログアウトメッセージ
-logout-message: false
+logout-message: true
 logout-message-content: ""
 
 #コマンドブロックのログ

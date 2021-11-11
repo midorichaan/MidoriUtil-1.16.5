@@ -17,36 +17,42 @@ public class playerLog implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
-        Boolean toggle = plugin.getConfig().getBoolean("login-message");
+        Boolean togglemsg = plugin.getConfig().getBoolean("login-message");
         String content = plugin.getConfig().getString("login-message-content");
 
-        if (toggle == false) {
-            return;
+        if (togglemsg) {
+            if (content.isEmpty() || content == null) {
+                content = prefix + p.getName() + " joined the game.";
+            }
+
+            e.setJoinMessage(content);
         }
 
-        if (content.isEmpty() || content == null) {
-            content = prefix + p.getName() + " joined the game.";
+        Boolean toggletitle = plugin.getConfig().getBoolean("login-title");
+        String titlemsg = plugin.getConfig().getString("login-title-content");
+        String subtitlemsg = plugin.getConfig().getString("login-subtitle-content");
+
+        if (toggletitle) {
+            p.sendTitle(titlemsg.replace("&", "§"), subtitlemsg.replace("&", "§"), 20, 20, 20);
         }
 
-        e.setJoinMessage(content);
     }
 
     @EventHandler(priority=EventPriority.HIGHEST)
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
 
-        Boolean toggle = plugin.getConfig().getBoolean("logout-message");
+        Boolean togglemsg = plugin.getConfig().getBoolean("logout-message");
         String content = plugin.getConfig().getString("logout-message-content");
 
-        if (toggle == false) {
-            return;
+        if (togglemsg) {
+            if (content.isEmpty() || content == null) {
+                content = prefix + p.getName() + " left the game.";
+            }
+
+            e.setQuitMessage(content);
         }
 
-        if (content.isEmpty() || content == null) {
-            content = prefix + p.getName() + " left the game.";
-        }
-
-        e.setQuitMessage(content);
     }
 
 }
