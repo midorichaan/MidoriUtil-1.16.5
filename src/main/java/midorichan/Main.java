@@ -17,24 +17,17 @@ public final class Main extends JavaPlugin {
     public static String version;
     public static FileConfiguration config = null;
 
-    public static Main getInstance() {
-        return instance;
-    }
-
+    public static Main getInstance() { return instance; }
     public static String getPrefix() {
         return prefix;
     }
-
     public static String getVersion() {
         return version;
     }
 
-    public void log(String info) {
-        getLogger().info(info);
-    }
-
     @Override
     public void onEnable() {
+        instance = this;
         saveDefaultConfig();
         config = getConfig();
         prefix = config.getString("chat-prefix", " §2>§a>§r ");
@@ -50,12 +43,12 @@ public final class Main extends JavaPlugin {
         Bukkit.getPluginCommand("hat").setExecutor(new hat());
         Bukkit.getPluginCommand("fly").setExecutor(new fly());
 
-        log(getPrefix() + "Enabled MidoriUtil for 1.16.5");
+        getLogger().info(getPrefix() + "Enabled MidoriUtil for 1.16.5");
     }
 
     @Override
     public void onDisable() {
-        log(getPrefix() + "Disabled MidoriUtil for 1.16.5");
+        getLogger().info(getPrefix() + "Disabled MidoriUtil for 1.16.5");
     }
 
 }

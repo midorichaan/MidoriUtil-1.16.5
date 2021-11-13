@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 public class fly implements CommandExecutor {
 
     private static Main plugin = Main.getInstance();
-    private static Utils util = new Utils();
     private static String prefix = plugin.getPrefix();
 
     @Override

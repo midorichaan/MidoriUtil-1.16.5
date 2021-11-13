@@ -17,8 +17,8 @@ public class playerLog implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
-        Boolean togglemsg = plugin.getConfig().getBoolean("login-message");
-        String content = plugin.getConfig().getString("login-message-content");
+        Boolean togglemsg = plugin.config.getBoolean("login-message");
+        String content = plugin.config.getString("login-message-content");
 
         if (togglemsg) {
             if (content.isEmpty() || content == null) {
@@ -28,9 +28,9 @@ public class playerLog implements Listener {
             e.setJoinMessage(content);
         }
 
-        Boolean toggletitle = plugin.getConfig().getBoolean("login-title");
-        String titlemsg = plugin.getConfig().getString("login-title-content");
-        String subtitlemsg = plugin.getConfig().getString("login-subtitle-content");
+        Boolean toggletitle = plugin.config.getBoolean("login-title");
+        String titlemsg = plugin.config.getString("login-title-content");
+        String subtitlemsg = plugin.config.getString("login-subtitle-content");
 
         if (toggletitle) {
             p.sendTitle(titlemsg.replace("&", "§"), subtitlemsg.replace("&", "§"), 20, 20, 20);
@@ -42,8 +42,8 @@ public class playerLog implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
 
-        Boolean togglemsg = plugin.getConfig().getBoolean("logout-message");
-        String content = plugin.getConfig().getString("logout-message-content");
+        Boolean togglemsg = plugin.config.getBoolean("logout-message");
+        String content = plugin.config.getString("logout-message-content");
 
         if (togglemsg) {
             if (content.isEmpty() || content == null) {
