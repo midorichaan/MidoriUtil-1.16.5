@@ -16,7 +16,7 @@ public class reloadconfig implements CommandExecutor {
             if (cmd.getName().equalsIgnoreCase("reloadconfig")) {
                 if (args.length == 0) {
                     plugin.reloadConfig();
-                    plugin.config = Main.getInstance().getConfig();
+                    Main.config = Main.getInstance().getConfig();
                     sender.sendMessage(prefix + "Configを再読み込みしました。");
                     return true;
                 } else {
