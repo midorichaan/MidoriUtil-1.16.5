@@ -35,6 +35,18 @@ public class playerLog implements Listener {
         String titlemsg = Main.config.getString("login-title-content");
         String subtitlemsg = Main.config.getString("login-subtitle-content");
 
+        assert titlemsg != null;
+        titlemsg.replace("{PLAYER}", p.getName())
+                .replace("{PLAYERUUID}", p.getUniqueId().toString())
+                .replace("{PLAYERWORLD}", p.getWorld().getName())
+                .replace("{PREFIX}", prefix);
+
+        assert subtitlemsg != null;
+        subtitlemsg.replace("{PLAYER}", p.getName())
+                .replace("{PLAYERUUID}", p.getUniqueId().toString())
+                .replace("{PLAYERWORLD}", p.getWorld().getName())
+                .replace("{PREFIX}", prefix);
+
         if (toggletitle) {
             p.sendTitle(titlemsg.replace("&", "§"),
                     subtitlemsg.replace("&", "§"),
