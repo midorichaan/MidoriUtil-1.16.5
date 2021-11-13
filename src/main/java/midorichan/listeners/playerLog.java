@@ -21,35 +21,33 @@ public class playerLog implements Listener {
 
         if (togglemsg) {
             if (content == null || content.isEmpty()) {
-                content = prefix + p.getName() + " joined the game.";
+                e.setJoinMessage(prefix + p.getName() + " joined the game.");
             }
 
-            content.replace("{PLAYER}", p.getName())
+            assert content != null;
+            e.setJoinMessage(content.replace("{PLAYER}", p.getName())
                     .replace("{PLAYERUUID}", p.getUniqueId().toString())
                     .replace("{PLAYERWORLD}", p.getWorld().getName())
-                    .replace("{PREFIX}", prefix);
-            e.setJoinMessage(content);
+                    .replace("{PREFIX}", prefix));
         }
 
         boolean toggletitle = Main.config.getBoolean("login-title");
         String titlemsg = Main.config.getString("login-title-content");
         String subtitlemsg = Main.config.getString("login-subtitle-content");
 
-        assert titlemsg != null;
-        titlemsg.replace("{PLAYER}", p.getName())
-                .replace("{PLAYERUUID}", p.getUniqueId().toString())
-                .replace("{PLAYERWORLD}", p.getWorld().getName())
-                .replace("{PREFIX}", prefix);
-
-        assert subtitlemsg != null;
-        subtitlemsg.replace("{PLAYER}", p.getName())
-                .replace("{PLAYERUUID}", p.getUniqueId().toString())
-                .replace("{PLAYERWORLD}", p.getWorld().getName())
-                .replace("{PREFIX}", prefix);
-
         if (toggletitle) {
-            p.sendTitle(titlemsg.replace("&", "§"),
-                    subtitlemsg.replace("&", "§"),
+            assert titlemsg != null;
+            assert subtitlemsg != null;
+            p.sendTitle(titlemsg.replace("&", "§")
+                            .replace("{PLAYER}", p.getName())
+                            .replace("{PLAYERUUID}", p.getUniqueId().toString())
+                            .replace("{PLAYERWORLD}", p.getWorld().getName())
+                            .replace("{PREFIX}", prefix),
+                    subtitlemsg.replace("&", "§")
+                            .replace("{PLAYER}", p.getName())
+                            .replace("{PLAYERUUID}", p.getUniqueId().toString())
+                            .replace("{PLAYERWORLD}", p.getWorld().getName())
+                            .replace("{PREFIX}", prefix),
                     20, 20, 20);
         }
 
@@ -64,15 +62,14 @@ public class playerLog implements Listener {
 
         if (togglemsg) {
             if (content == null || content.isEmpty()) {
-                content = prefix + p.getName() + " left the game.";
+                e.setQuitMessage(prefix + p.getName() + " left the game.");
             }
 
-            content.replace("{PLAYER}", p.getName())
+            assert content != null;
+            e.setQuitMessage(content.replace("{PLAYER}", p.getName())
                     .replace("{PLAYERUUID}", p.getUniqueId().toString())
                     .replace("{PLAYERWORLD}", p.getWorld().getName())
-                    .replace("{PREFIX}", prefix);
-
-            e.setQuitMessage(content);
+                    .replace("{PREFIX}", prefix));
         }
 
     }
