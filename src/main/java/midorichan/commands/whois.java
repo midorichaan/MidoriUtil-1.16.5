@@ -9,11 +9,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class whois implements CommandExecutor {
 
-    private static Main plugin = Main.getInstance();
-    private static Utils util = new Utils();
-    private static String prefix = plugin.getPrefix();
+    private static final Utils util = new Utils();
+    private static final String prefix = Main.getPrefix();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
@@ -41,9 +42,10 @@ public class whois implements CommandExecutor {
                     " §2---------------|" + " §aWhois " + "§2|---------------",
                     "   Player: " + targetplayer.getName(),
                     "   UUID: " + targetplayer.getUniqueId().toString(),
-                    "   Address: " + util.replaceLast(targetplayer.getAddress().toString().replaceFirst("/", "").replace(String.valueOf(targetplayer.getAddress().getPort()), ""), ":", ""),
-                    "   Ping: " + util.getPing(targetplayer),
-                    "   World: " + loc.getWorld().getName(),
+                    "   Address: " + Utils.replaceLast(Objects.requireNonNull(targetplayer.getAddress()).toString().replaceFirst("/", "")
+                            .replace(String.valueOf(targetplayer.getAddress().getPort()), ""), ":", ""),
+                    "   Ping: " + Utils.getPing(targetplayer),
+                    "   World: " + Objects.requireNonNull(loc.getWorld()).getName(),
                     "   Location: " + loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ(),
                     "   Gamemode: " + targetplayer.getGameMode().toString(),
                     "   Flymode: " + (targetplayer.getAllowFlight()? "On": "Off"),

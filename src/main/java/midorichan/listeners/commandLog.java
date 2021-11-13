@@ -14,11 +14,11 @@ import org.bukkit.event.server.ServerCommandEvent;
 
 public class commandLog implements Listener {
 
-    private static Main plugin = Main.getInstance();
+    private static final Main plugin = Main.getInstance();
 
     @EventHandler(priority= EventPriority.HIGHEST)
     public static void onPlayerCommand(PlayerCommandPreprocessEvent e) {
-        if (plugin.config.getBoolean("admin-player-commandlog")) {
+        if (Main.config.getBoolean("admin-player-commandlog")) {
             String logmsg = String.format(" §a* §7%s : %s", e.getPlayer().getName(), e.getMessage());
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (p.hasPermission("midoriutil.admins.cmdlog") || p.isOp()) {
@@ -31,10 +31,10 @@ public class commandLog implements Listener {
     @EventHandler(priority= EventPriority.HIGHEST)
     public static void onServerCommand(ServerCommandEvent e){
         if (e.getSender() instanceof BlockCommandSender) {
-            if (plugin.config.getBoolean("admin-cmdblock-commandlog")) {
+            if (Main.config.getBoolean("admin-cmdblock-commandlog")) {
                 BlockCommandSender s = (BlockCommandSender) e.getSender();
 
-                if (s.getBlock() == null || !(s.getBlock().getState() instanceof CommandBlock)) {
+                if (!(s.getBlock().getState() instanceof CommandBlock)) {
                     return;
                 }
 
@@ -48,7 +48,7 @@ public class commandLog implements Listener {
                 }
             }
         } else {
-            if (plugin.config.getBoolean("admin-console-commandlog")) {
+            if (Main.config.getBoolean("admin-console-commandlog")) {
                 String logmsg = String.format(" §a* §7CONSOLE : %s", e.getCommand());
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (p.hasPermission("midoriutil.admins.cmdlog") || p.isOp()) {
@@ -61,7 +61,7 @@ public class commandLog implements Listener {
 
     @EventHandler(priority=EventPriority.HIGHEST)
     public static void onRemoteServerCommand(RemoteServerCommandEvent e){
-        if (plugin.config.getBoolean("admin-rcon-commandlog")) {
+        if (Main.config.getBoolean("admin-rcon-commandlog")) {
             String logmsg = String.format(" §a* §7RCON : %s", e.getCommand());
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (p.hasPermission("midoriutil.admin.cmdlog") || p.isOp()) {

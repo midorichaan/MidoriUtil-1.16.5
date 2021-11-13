@@ -10,27 +10,30 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class playerLog implements Listener {
 
-    private static Main plugin = Main.getInstance();
-    private String prefix = plugin.getPrefix();
+    private final String prefix = Main.getPrefix();
 
     @EventHandler(priority=EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
-        Boolean togglemsg = plugin.config.getBoolean("login-message");
-        String content = plugin.config.getString("login-message-content");
+        boolean togglemsg = Main.config.getBoolean("login-message");
+        String content = Main.config.getString("login-message-content");
 
         if (togglemsg) {
-            if (content.isEmpty() || content == null) {
+            if (content == null) {
                 content = prefix + p.getName() + " joined the game.";
             }
 
+            content.replace("{PLAYER}", p.getName())
+                    .replace("{PLAYERUUID}", p.getUniqueId().toString())
+                    .replace("{PLAYERWORLD}", p.getWorld().getName())
+                    .replace("{PREFIX}", prefix);
             e.setJoinMessage(content);
         }
 
-        Boolean toggletitle = plugin.config.getBoolean("login-title");
-        String titlemsg = plugin.config.getString("login-title-content");
-        String subtitlemsg = plugin.config.getString("login-subtitle-content");
+        boolean toggletitle = Main.config.getBoolean("login-title");
+        String titlemsg = Main.config.getString("login-title-content");
+        String subtitlemsg = Main.config.getString("login-subtitle-content");
 
         if (toggletitle) {
             p.sendTitle(titlemsg.replace("&", "§"), subtitlemsg.replace("&", "§"), 20, 20, 20);
@@ -42,13 +45,18 @@ public class playerLog implements Listener {
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
 
-        Boolean togglemsg = plugin.config.getBoolean("logout-message");
-        String content = plugin.config.getString("logout-message-content");
+        boolean togglemsg = Main.config.getBoolean("logout-message");
+        String content = Main.config.getString("logout-message-content");
 
         if (togglemsg) {
-            if (content.isEmpty() || content == null) {
+            if (content == null) {
                 content = prefix + p.getName() + " left the game.";
             }
+
+            content.replace("{PLAYER}", p.getName())
+                    .replace("{PLAYERUUID}", p.getUniqueId().toString())
+                    .replace("{PLAYERWORLD}", p.getWorld().getName())
+                    .replace("{PREFIX}", prefix);
 
             e.setQuitMessage(content);
         }

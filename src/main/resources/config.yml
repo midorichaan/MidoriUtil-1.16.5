@@ -1,6 +1,11 @@
 #チャットのPrefix
 chat-prefix: " §2>§a>§r "
 
+#以下のプレースホルダーが使用可能です
+# {PLAYER} → プレイヤー名
+# {PLAYERUUID} → プレイヤーUUID
+# {PLAYERWORLD} → プレイヤーのいるワールド
+# {PREFIX} → チャットのPrefix
 #ログインメッセージ
 login-message: true
 login-message-content: ""

@@ -7,16 +7,15 @@ import org.bukkit.command.CommandSender;
 
 public class reloadconfig implements CommandExecutor {
 
-    private String prefix = Main.getPrefix();
-    private Main plugin = Main.getInstance();
+    private final String prefix = Main.getPrefix();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender.isOp() || sender.hasPermission("midoriutil.commands.reloadconfig")) {
             if (cmd.getName().equalsIgnoreCase("reloadconfig")) {
                 if (args.length == 0) {
-                    plugin.instance.reloadConfig();
-                    plugin.config = Main.getInstance().getConfig();
+                    Main.instance.reloadConfig();
+                    Main.config = Main.getInstance().getConfig();
                     sender.sendMessage(prefix + "Configを再読み込みしました。");
                     return true;
                 } else {

@@ -11,8 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class hat implements CommandExecutor {
 
-    private static Main plugin = Main.getInstance();
-    private static String prefix = plugin.getPrefix();
+    private static final String prefix = Main.getPrefix();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

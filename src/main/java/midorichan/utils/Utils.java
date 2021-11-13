@@ -10,8 +10,6 @@ import java.util.jar.JarFile;
 
 public class Utils {
 
-    private static Main plugin = Main.getInstance();
-
     public static String replaceLast(String text, String regex, String replacement){
         return text.replaceFirst("(?s)(.*)" + regex, "$1" + replacement);
     }
@@ -19,7 +17,7 @@ public class Utils {
     public static int getPing(Player player) {
         int ping = -1;
         try {
-            Class<?> cp = Class.forName("org.bukkit.craftbukkit."+ plugin.getVersion() +".entity.CraftPlayer");
+            Class<?> cp = Class.forName("org.bukkit.craftbukkit."+ Main.getVersion() +".entity.CraftPlayer");
             Object cpc = cp.cast(player);
             Method m = cpc.getClass().getMethod("getHandle");
             Object o = m.invoke(cpc);
