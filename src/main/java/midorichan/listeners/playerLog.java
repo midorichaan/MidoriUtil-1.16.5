@@ -20,7 +20,7 @@ public class playerLog implements Listener {
         String content = Main.config.getString("login-message-content");
 
         if (togglemsg) {
-            if (content == null) {
+            if (content == null || content.isEmpty()) {
                 content = prefix + p.getName() + " joined the game.";
             }
 
@@ -36,7 +36,9 @@ public class playerLog implements Listener {
         String subtitlemsg = Main.config.getString("login-subtitle-content");
 
         if (toggletitle) {
-            p.sendTitle(titlemsg.replace("&", "§"), subtitlemsg.replace("&", "§"), 20, 20, 20);
+            p.sendTitle(titlemsg.replace("&", "§"),
+                    subtitlemsg.replace("&", "§"),
+                    20, 20, 20);
         }
 
     }
@@ -49,7 +51,7 @@ public class playerLog implements Listener {
         String content = Main.config.getString("logout-message-content");
 
         if (togglemsg) {
-            if (content == null) {
+            if (content == null || content.isEmpty()) {
                 content = prefix + p.getName() + " left the game.";
             }
 
