@@ -21,7 +21,6 @@ public class commandLog implements Listener {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (p.hasPermission("midoriutil.admins.cmdlog") || p.isOp()) {
                     p.sendMessage(logmsg);
-                    Main.instance.log(logmsg);
                 }
             }
         }
@@ -43,7 +42,6 @@ public class commandLog implements Listener {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (p.hasPermission("midoriutil.admins.cmdlog") || p.isOp()) {
                         p.sendMessage(logmsg);
-                        Main.instance.log(logmsg);
                     }
                 }
             }
@@ -53,7 +51,6 @@ public class commandLog implements Listener {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (p.hasPermission("midoriutil.admins.cmdlog") || p.isOp()) {
                         p.sendMessage(logmsg);
-                        Main.instance.log(logmsg);
                     }
                 }
             }
@@ -67,7 +64,6 @@ public class commandLog implements Listener {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (p.hasPermission("midoriutil.admin.cmdlog") || p.isOp()) {
                     p.sendMessage(logmsg);
-                    Main.instance.log(logmsg);
                 }
             }
         }
