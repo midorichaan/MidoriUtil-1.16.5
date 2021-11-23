@@ -1,5 +1,6 @@
 package midorichan;
 
+import midorichan.utils.database;
 import midorichan.commands.fly;
 import midorichan.commands.hat;
 import midorichan.commands.reloadconfig;
@@ -9,6 +10,8 @@ import midorichan.listeners.playerLog;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.SQLException;
 
 public final class Main extends JavaPlugin {
 
@@ -33,6 +36,25 @@ public final class Main extends JavaPlugin {
         prefix = config.getString("chat-prefix", " §2>§a>§r ");
         version = Bukkit.getServer().getClass().getPackage().getName();
         version = version.substring(version.lastIndexOf(".") + 1);
+
+        database.init(
+                config.getString("address"),
+                config.getString("sql"),
+                config.getString("database"),
+                config.getInt("port"),
+                config.getString("username"),
+                config.getString("password")
+        );
+
+        try {
+            database.getConnect()
+                    .createStatement()
+                    .execute(
+                            "CREATE TABLE IF NOT EXISTS command_log(playername TEXT, playeruuid TEXT)"
+                    );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //register listener
         Bukkit.getPluginManager().registerEvents(new commandLog(), this);

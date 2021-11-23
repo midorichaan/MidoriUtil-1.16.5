@@ -1,6 +1,7 @@
 package midorichan.commands;
 
 import midorichan.Main;
+import midorichan.utils.database;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +17,15 @@ public class reloadconfig implements CommandExecutor {
                 if (args.length == 0) {
                     Main.instance.reloadConfig();
                     Main.config = Main.getInstance().getConfig();
+                    database.init(
+                            Main.config.getString("address"),
+                            Main.config.getString("sql"),
+                            Main.config.getString("database"),
+                            Main.config.getInt("port"),
+                            Main.config.getString("username"),
+                            Main.config.getString("password")
+                    );
+
                     sender.sendMessage(prefix + "Configを再読み込みしました。");
                     return true;
                 } else {

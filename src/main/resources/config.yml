@@ -22,3 +22,17 @@ admin-cmdblock-commandlog: true
 admin-player-commandlog: true
 #コンソールのコマンドログ
 admin-console-commandlog: true
+
+#データベース
+# sql - mysql, mariadb
+# address - データベースのアドレス (IP)
+# database - 使用データベース名
+# port - ポート (default 3306)
+# username - ユーザー名
+# password - パスワード
+sql: "mysql"
+address: ""
+database: ""
+port: 3306
+username: ""
+password: ""
